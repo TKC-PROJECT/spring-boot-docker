@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo 'validation, compilation, testing and package..'
 		echo 'testing successful and ready to package..'
-		mvn clean package 		   
+		sh "mvn clean package" 		   
             }
         }
         stage('Deploy') {
