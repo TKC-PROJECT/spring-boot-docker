@@ -7,13 +7,15 @@ pipeline {
     stages {
         stage('1.Clone') {
             steps {
-                echo 'echo clonning the latest version of the code..'
+                echo 'clonning the latest version of the code..'
 		git credentialsId: 'ada84d69-bfca-47b8-ba86-64e5dde5a754', url: 'https://github.com/TKC-PROJECT/spring-boot-docker'
             }
         }
-        stage('Test') {
+        stage('2.Build') {
             steps {
-                echo 'Testing..'
+                echo 'validation, compilation, testing and package..'
+		echo 'testing successful and ready to package..'
+		mvn clean package 		   
             }
         }
         stage('Deploy') {
