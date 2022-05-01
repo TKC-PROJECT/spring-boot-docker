@@ -36,16 +36,21 @@ pipeline {
 		sh "docker build -t tikuodijie/ose ." 	
 	    }
         }  
-	stage('6.Push Image to Docker-Hub') {
+	stage('6.Push Docker Image') {
             steps {
 		withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
                  sh "docker login -u tikuodijie -p ${dockerhub}"
                 }
-		sh 'docker push tikuodijie/ose'
+		sh "docker push tikuodijie/ose"
 
 	    }
         }  
-        stage('Deploy') {
+	stage('7.RemoveDockerImages') {
+            steps {
+		sh "docker rmi $(docker images -q)"	
+	    }
+        }        
+        stage('8.Deploy') {
             steps {
                 echo 'Deploying....'
             }
