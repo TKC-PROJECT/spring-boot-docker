@@ -38,8 +38,9 @@ pipeline {
         }  
 	stage('6.Push Image to Docker-Hub') {
             steps {
-		withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) 
-                sh 'docker login -u tikuodijie -p ${dockerhub}'
+		withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+                 sh "docker login -u tikuodijie -p ${dockerhub}"
+                }
 		sh 'docker push tikuodijie/ose'
 
 	    }
