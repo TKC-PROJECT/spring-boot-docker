@@ -25,7 +25,7 @@ pipeline {
 		sh "mvn sonar:sonar" 	
 	    }
         }
-	stage('4.uploadArtifacts') {
+	stage('4.UploadArtifacts') {
             steps {
                 echo 'echo performing backup of build Artifacts..'
 		sh "mvn deploy" 	
@@ -34,6 +34,14 @@ pipeline {
 	stage('5.Build Docker Image') {
             steps {
 		sh "docker build -t tikuodijie/ose ." 	
+	    }
+        }  
+	stage('5.Push Image to Docker-Hub') {
+            steps {
+		withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhubcre')]) 
+                sh 'docker login -u tikuodijie -p ${dockerhubcre}'
+		sh 'docker push tikuodijie/ose:01'
+
 	    }
         }  
         stage('Deploy') {
