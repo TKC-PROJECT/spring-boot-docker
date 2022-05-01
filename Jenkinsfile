@@ -50,7 +50,7 @@ pipeline {
 		sh 'docker rmi $(docker images -q)'	
 	    }
         }        
-        stage('8.Deploy') {
+        stage('8.Deploy To Kuberates Cluster') {
             steps {
                 echo 'Deploying....'
             }
