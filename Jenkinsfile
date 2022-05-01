@@ -31,6 +31,11 @@ pipeline {
 		sh "mvn deploy" 	
 	    }
         }    
+	stage('5.Build Docker Image') {
+            steps {
+		sh "docker build -t tikuodijie/ose:v1" 	
+	    }
+        }  
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
