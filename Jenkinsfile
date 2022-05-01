@@ -33,7 +33,7 @@ pipeline {
         }    
 	stage('5.Build Docker Image') {
             steps {
-		sh "docker build -t tikuodijie/ose:v1" 	
+		sh "docker build -t tikuodijie/ose" 	
 	    }
         }  
         stage('Deploy') {
