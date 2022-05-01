@@ -18,6 +18,19 @@ pipeline {
 		sh "mvn clean package" 		   
             }
         }
+	stage('3.Quality') {
+            steps {
+                echo 'performing code quality analysis..'
+		echo 'code quality successful and ready to upload..'
+		sh "mvn sonar:sonar" 	
+	    }
+        }
+	stage('4.uploadArtifacts') {
+            steps {
+                echo 'echo performing backup of build Artifacts..'
+		sh "mvn deploy" 	
+	    }
+        }    
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
