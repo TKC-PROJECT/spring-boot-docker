@@ -36,11 +36,11 @@ pipeline {
 		sh "docker build -t tikuodijie/ose ." 	
 	    }
         }  
-	stage('5.Push Image to Docker-Hub') {
+	stage('6.Push Image to Docker-Hub') {
             steps {
-		withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhubcre')]) 
-                sh 'docker login -u tikuodijie -p ${dockerhubcre}'
-		sh 'docker push tikuodijie/ose:01'
+		withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) 
+                sh 'docker login -u tikuodijie -p ${dockerhub}'
+		sh 'docker push tikuodijie/ose'
 
 	    }
         }  
