@@ -47,7 +47,7 @@ pipeline {
         }  
 	stage('7.RemoveDockerImages') {
             steps {
-		sh "docker rmi $(docker images -q)"	
+		sh 'docker rmi $(docker images -q)'	
 	    }
         }        
         stage('8.Deploy') {
